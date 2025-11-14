@@ -1,17 +1,64 @@
 import '../styles/Nav.css';
 import logo from '../assets/logo.svg';
+import { Link, useLocation } from 'react-router-dom';
 
 function Nav() {
+  const location = useLocation();
+
   return (
     <nav>
-      <img src={logo} className="logo" alt="Logo" />
+      <Link to="/">
+        <img src={logo} className="logo" alt="Logo" />
+      </Link>
       <ul>
-        <li><a href="#home">Home</a></li>
-        <li><a href="#about">About</a></li>
-        <li><a href="#menu">Menu</a></li>
-        <li><a href="#reservations">Reservations</a></li>
-        <li><a href="#order">Order Online</a></li>
-        <li><a href="#login">Login</a></li>
+        <li>
+          <Link
+            to="/"
+            className={location.pathname === '/' ? 'active' : ''}
+          >
+            Home
+          </Link>
+        </li>
+        <li>
+          <Link
+            to="/about"
+            className={location.pathname === '/about' ? 'active' : ''}
+          >
+            About
+          </Link>
+        </li>
+        <li>
+          <Link
+            to="/menu"
+            className={location.pathname === '/menu' ? 'active' : ''}
+          >
+            Menu
+          </Link>
+        </li>
+        <li>
+          <Link
+            to="/reservations"
+            className={location.pathname === '/reservations' ? 'active' : ''}
+          >
+            Reservations
+          </Link>
+        </li>
+        <li>
+          <Link
+            to="/order"
+            className={location.pathname === '/order' ? 'active' : ''}
+          >
+            Order Online
+          </Link>
+        </li>
+        <li>
+          <Link
+            to="/login"
+            className={location.pathname === '/login' ? 'active' : ''}
+          >
+            Login
+          </Link>
+        </li>
       </ul>
     </nav>
   );
