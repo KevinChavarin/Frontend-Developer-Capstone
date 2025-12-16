@@ -5,7 +5,7 @@ import Nav from './components/Nav';
 import Home from './pages/Home';
 import About from './pages/About';
 import Menu from './pages/Menu';
-import Reservations from './pages/Reservations';
+import Booking from './pages/BookingPage';
 import OrderOnline from './pages/OrderOnline';
 import Login from './pages/Login';
 import Footer from './components/Footer';
@@ -18,7 +18,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
           <Route path="/menu" element={<Menu />} />
-          <Route path="/reservations" element={<Reservations />} />
+          <Route path="/booking" element={<Booking />} />
           <Route path="/order" element={<OrderOnline />} />
           <Route path="/login" element={<Login />} />
         </Routes>

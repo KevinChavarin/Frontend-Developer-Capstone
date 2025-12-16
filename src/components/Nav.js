@@ -37,8 +37,8 @@ function Nav() {
         </li>
         <li>
           <Link
-            to="/reservations"
-            className={location.pathname === '/reservations' ? 'active' : ''}
+            to="/booking"
+            className={location.pathname === '/booking' ? 'active' : ''}
           >
             Reservations
           </Link>

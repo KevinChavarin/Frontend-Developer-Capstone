@@ -3,13 +3,16 @@ import dish1 from '../assets/greek salad.jpg';
 import dish2 from '../assets/bruchetta.svg';
 import dish3 from '../assets/lemon dessert.jpg';
 
+
 function Main() {
+
   return (
     <main className="main-content">
       <div className="container">
         <h2>This week specials!</h2>
         <button className="online-menu-btn">Online Menu</button>
       </div>
+
       <div className="cards-container">
         <div className="card">
           <img src={dish1} alt="Greek Salad" />
