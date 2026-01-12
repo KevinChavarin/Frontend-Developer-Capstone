@@ -9,6 +9,7 @@ import Booking from './pages/BookingPage';
 import OrderOnline from './pages/OrderOnline';
 import Login from './pages/Login';
 import Footer from './components/Footer';
+import BookingConfirmed from './components/ConfirmedBooking';
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
           <Route path="/booking" element={<Booking />} />
           <Route path="/order" element={<OrderOnline />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/bookingConfirmed" element={<BookingConfirmed />} />
         </Routes>
         <Footer />
     </Router>

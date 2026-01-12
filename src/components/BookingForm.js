@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import '../styles/BookingForm.css'
 
-function BookingForm({ availableTimes, dispatch }) {
+function BookingForm({ availableTimes, dispatch, submitForm }) {
 
     const [bookingDate, setBookingDate] = useState('');
     const [bookingTime, setBookingTime] = useState('');
@@ -11,8 +11,20 @@ function BookingForm({ availableTimes, dispatch }) {
     const handleDateChange = (e) => {
         const selectedDate = e.target.value;
         setBookingDate(selectedDate);
-        // Disparar la acción cuando cambia la fecha
-        dispatch({ type: 'UPDATE_TIMES', payload: selectedDate });
+        // Convert string date (yyyy-mm-dd) to Date object
+        const dateObj = new Date(selectedDate);
+        dispatch(dateObj);
+    }
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        const formData = {
+            date: bookingDate,
+            time: bookingTime,
+            guests: bookingGuests,
+            occasion: bookingOccasion
+        };
+        submitForm(formData);
     }
 
     return (
@@ -21,14 +33,14 @@ function BookingForm({ availableTimes, dispatch }) {
             <input
                 type="date"
                 id="res-date"
-                value = {bookingDate}
+                value={bookingDate}
                 onChange={handleDateChange}
             />
             <label htmlFor="res-time">Choose time</label>
             <select
-            id="res-time"
-            value={bookingTime}
-            onChange={(e) => setBookingTime(e.target.value)}
+                id="res-time"
+                value={bookingTime}
+                onChange={(e) => setBookingTime(e.target.value)}
             >
                 {availableTimes.map((time) => (
                     <option key={time} value={time}>{time}</option>
@@ -36,24 +48,24 @@ function BookingForm({ availableTimes, dispatch }) {
             </select>
             <label htmlFor="guests">Number of guests</label>
             <input
-            type="number"
-            placeholder="1"
-            min="1"
-            max="10"
-            id="guests"
-            value={bookingGuests}
-            onChange={(e) => setBookingGuests(e.target.value)}
+                type="number"
+                placeholder="1"
+                min="1"
+                max="10"
+                id="guests"
+                value={bookingGuests}
+                onChange={(e) => setBookingGuests(e.target.value)}
             />
             <label htmlFor="occasion">Occasion</label>
             <select
-            id="occasion"
-            value={bookingOccasion}
-            onChange={(e) => setBookingOccasion(e.target.value)}
+                id="occasion"
+                value={bookingOccasion}
+                onChange={(e) => setBookingOccasion(e.target.value)}
             >
                 <option>Birthday</option>
                 <option>Anniversary</option>
             </select>
-            <button type="submit">Make Your reservation</button>
+            <button type="submit" onClick={handleSubmit}>Make Your reservation</button>
         </form>
     )
 }

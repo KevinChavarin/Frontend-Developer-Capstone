@@ -1,30 +1,29 @@
 import { useReducer } from "react";
 import BookingForm from "../components/BookingForm"
+import { useNavigate } from "react-router-dom";
 
 
 function BookingPage() {
-    const initialState = ['17:00', '18:00', '19:00', '20:00', '21:00', '22:00'];
-
+    const navigate = useNavigate();
     function updateTimes(state, action) {
-        switch(action.type) {
-            case 'SET_TIMES':
-                return action.payload;
-            case 'ADD_TIME':
-                return [...state, action.payload];
-            case 'REMOVE_TIME':
-                return state.filter(time => time !== action.payload);
-            default:
-                return state;
-        }
+        return window.API.fetchAPI(action);
     }
 
     function initializeTimes() {
-        return initialState;
+        if (window.API && window.API.fetchAPI) {
+            const times = window.API.fetchAPI(new Date());
+            return times;
+        }
+        return [];
     }
 
-    const [availableTimes, dispatch] = useReducer(updateTimes, initializeTimes());
+    function submitForm(formData){
+        window.API.submitAPI(formData) ? navigate('/bookingConfirmed') : console.log("Submission failed");
+    }
+
+    const [availableTimes, dispatch] = useReducer(updateTimes, [], initializeTimes);
   return (
-    <BookingForm availableTimes={availableTimes} dispatch={dispatch} />
+    <BookingForm availableTimes={availableTimes} dispatch={dispatch} submitForm = {submitForm} />
   )
 }
 
