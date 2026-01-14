@@ -35,12 +35,14 @@ function BookingForm({ availableTimes, dispatch, submitForm }) {
                 id="res-date"
                 value={bookingDate}
                 onChange={handleDateChange}
+                aria-label='Date desired'
             />
             <label htmlFor="res-time">Choose time</label>
             <select
                 id="res-time"
                 value={bookingTime}
                 onChange={(e) => setBookingTime(e.target.value)}
+                aria-label='Time desired'
             >
                 {availableTimes.map((time) => (
                     <option key={time} value={time}>{time}</option>
@@ -55,17 +57,19 @@ function BookingForm({ availableTimes, dispatch, submitForm }) {
                 id="guests"
                 value={bookingGuests}
                 onChange={(e) => setBookingGuests(e.target.value)}
+                aria-label='Number of guests'
             />
             <label htmlFor="occasion">Occasion</label>
             <select
                 id="occasion"
                 value={bookingOccasion}
                 onChange={(e) => setBookingOccasion(e.target.value)}
+                aria-label='Occasion'
             >
                 <option>Birthday</option>
                 <option>Anniversary</option>
             </select>
-            <button type="submit" onClick={handleSubmit}>Make Your reservation</button>
+            <button type="submit" onClick={handleSubmit} aria-label='On Click'>Make Your reservation</button>
         </form>
     )
 }
